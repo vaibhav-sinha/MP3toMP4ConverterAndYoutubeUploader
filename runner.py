@@ -76,7 +76,7 @@ if __name__ == '__main__':
                 folders_to_skip.append(unique)
 
     if args.startingFolderNumber:
-        folders_to_skip.extend(str(x) for x in range(int(args.startingFolderNumber) + 1))
+        folders_to_skip.extend(str(x) for x in range(int(args.startingFolderNumber)))
 
     if not os.path.exists(args.folder):
         exit("Please specify a valid file using the --folder= parameter.")
