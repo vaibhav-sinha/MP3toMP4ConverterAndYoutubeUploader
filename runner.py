@@ -45,6 +45,13 @@ def get_upload_name(folder_name):
     else:
         return parts[1]
 
+def get_folder_number(folder_name):
+    parts = folder_name.split('-',1)
+    if len(parts) != 2:
+        print('Sorry this folder name %s couldn''t be split properly. So using the number instead'%folder_name)
+    else:
+        return int(parts[0])
+
 
 if __name__ == '__main__':
     argparser.add_argument("--folder", required=True, help="Path of the root directory")
@@ -90,6 +97,7 @@ if __name__ == '__main__':
     youtube = get_authenticated_service(args)
 
     folders = next(os.walk(path))[1]
+    folders.sort(key=get_folder_number)
 
     for folder in folders:
         if to_be_skipped(folder, folders_to_skip):
